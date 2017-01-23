@@ -6,16 +6,18 @@ package com.jordan.project.data;
 
 public final class OfflineUserData {
 
-    private String mUserName, mUserToken, mUserPhone, mUserEmail, mUserNick;
+    private String mUserName, mUserToken, mUserPassword, mUserPhone, mUserNick, mUserRole, mUserICInfo;
     private long mLastLoginDateTime;
 
-    public OfflineUserData(String user_name, String user_token, String user_phone,
-                           String user_email, String user_nick, long last_login_datetime) {
+    public OfflineUserData(String user_name, String user_token, String user_password, String user_phone, String user_nick, String user_role,
+                           String user_ic_info, long last_login_datetime) {
         mUserName = user_name;
         mUserToken = user_token;
+        mUserPassword = user_password;
         mUserPhone = user_phone;
-        mUserEmail = user_email;
         mUserNick = user_nick;
+        mUserRole = user_role;
+        mUserICInfo = user_ic_info;
         mLastLoginDateTime = last_login_datetime;
     }
 
@@ -27,16 +29,24 @@ public final class OfflineUserData {
         return mUserToken;
     }
 
+    public String getUserPassword() {
+        return mUserPassword;
+    }
+
     public String getUserPhone() {
         return mUserPhone;
     }
 
-    public String getUserEmail() {
-        return mUserEmail;
-    }
-
     public String getUserNick() {
         return mUserNick;
+    }
+
+    public String getUserRole() {
+        return mUserRole;
+    }
+
+    public String getUserICInfo() {
+        return mUserICInfo;
     }
 
     public long getLastLoginDateTime() {
@@ -48,9 +58,11 @@ public final class OfflineUserData {
         return "OfflineUserData{" +
                 "mUserName='" + mUserName + '\'' +
                 ", mUserToken='" + mUserToken + '\'' +
+                ", mUserPassword='" + mUserPassword + '\'' +
                 ", mUserPhone='" + mUserPhone + '\'' +
-                ", mUserEmail='" + mUserEmail + '\'' +
                 ", mUserNick='" + mUserNick + '\'' +
+                ", mUserRole='" + mUserRole + '\'' +
+                ", mUserICInfo='" + mUserICInfo + '\'' +
                 ", mLastLoginDateTime=" + mLastLoginDateTime +
                 '}';
     }
