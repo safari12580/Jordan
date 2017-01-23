@@ -10,6 +10,7 @@ import com.jordan.project.config.ActivityActionConfig;
  */
 
 public final class ActivityUtils {
+
     public static boolean startLoginActivitySafe(Activity ctx, String user_name, String user_password) {
         Intent start_login_activity_intent = new Intent(ActivityActionConfig.ACTION_TO_LOGIN);
         start_login_activity_intent.putExtra(ActivityActionConfig.KEY_LOGIN_USER_NAME, user_name);
