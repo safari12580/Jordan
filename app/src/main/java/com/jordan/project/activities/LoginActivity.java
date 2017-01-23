@@ -1,4 +1,4 @@
-package com.jordan.project.login;
+package com.jordan.project.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
