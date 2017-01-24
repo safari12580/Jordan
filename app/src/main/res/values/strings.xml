@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Jordan</string>
+    <string name="common_account">账号</string>
+    <string name="common_password">密码</string>
+    <string name="common_login">登陆</string>
+    <string name="common_forget_password">忘记密码</string>
+    <string name="common_register">注册</string>
+    <string name="common_phone_number">手机号码</string>
+    <string name="common_athor_code">验证码</string>
+    <string name="common_get_author_code">获取验证码</string>
+    <string name="common_nick">昵称</string>
+    <string name="common_role">角色</string>
+    <string name="common_ic_info">芯片信息</string>
+    <string name="common_confirm_password">确认密码</string>
+    <string name="info_start_activity_false">启动模块失败</string>
+    <string name="app_name">乔丹运动鞋</string>
+    <string name="info_register_false">注册失败</string>
+    <string name="info_wrong_input">输入错误</string>
 </resources>

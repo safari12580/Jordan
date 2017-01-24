@@ -17,14 +17,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.LoginActivity">
+        <activity
+            android:name=".activities.LoginActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <intent-filter>
                 <action android:name="com.jordan.project.LOGIN_ACTION" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.RegistActivity"></activity>
+        <activity
+            android:name=".activities.RegistActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="com.jordan.project.REGISTER_ACTION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.ForgetPasswordActivity">
+            <intent-filter>
+                <action android:name="com.jordan.project.FORGET_PASSWORD_ACTION"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
