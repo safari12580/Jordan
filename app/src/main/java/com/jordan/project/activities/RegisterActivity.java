@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.jordan.project.R;
 
-public class RegistActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
