@@ -15,4 +15,11 @@
     <string name="app_name">乔丹运动鞋</string>
     <string name="info_register_false">注册失败</string>
     <string name="info_wrong_input">输入错误</string>
+    <string name="common_confirm">确认</string>
+    <string name="common_cancel">取消</string>
+    <string name="info_empty_phone">手机号码为空</string>
+    <string name="info_wrong_phone">错误的手机号码</string>
+    <string name="info_empty_password">密码为空</string>
+    <string name="info_password_not_equals">密码不一致</string>
+    <string name="info_empty_code">请提供验证码</string>
 </resources>

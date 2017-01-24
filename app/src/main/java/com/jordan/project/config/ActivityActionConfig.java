@@ -16,6 +16,8 @@ public final class ActivityActionConfig {
     public static final int REQUEST_CODE_REGISTER = 20000;
     public static final int RESULT_CODE_REGISTER_SUCCESS = 20000;
     public static final int RESULT_CODE_REGISTER_FALSE = -20000;
+    public static final int RESULT_CODE_REGISTER_CANCEL = -20001;
+
 
     public static final int REQUEST_CODE_FORGET_PASSWORD = 30000;
     public static final int RESULT_CODE_FORGET_PASSWORD_SUCCESS = 30000;
