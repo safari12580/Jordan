@@ -1,6 +1,5 @@
 package com.jordan.project.activities;
 
-import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +37,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mETPassword = (EditText) findViewById(R.id.register_password_et);
         mETRePassword = (EditText) findViewById(R.id.register_re_password_et);
 
+        Button get_code_btn = (Button) findViewById(R.id.register_get_code_btn);
+        get_code_btn.setOnClickListener(this);
         Button confirm_btn = (Button) findViewById(R.id.register_confirm_btn);
         confirm_btn.setOnClickListener(this);
         Button cancel_btn = (Button) findViewById(R.id.register_cancel_btn);
@@ -56,6 +57,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 setResult(ActivityActionConfig.RESULT_CODE_REGISTER_CANCEL);
                 finish();
                 break;
+            case R.id.register_get_code_btn:
+                doGetCode();
+                break;
+
         }
     }
 
@@ -101,7 +106,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //Do register
     }
 
-    private void handleResultIfSuccess(){
+    private void doGetCode() {
+        String current_phone = mETPhoneNumber.getText().toString();
+        if (!TextUtils.isEmpty(current_phone)){
+            //do get code process;
+        }
+    }
+
+    private void handleResultIfSuccess(String result_json){
         String current_phone = mETPhoneNumber.getText().toString();
         String current_password = mETPassword.getText().toString();
         getIntent().putExtra(ActivityActionConfig.KEY_LOGIN_USER_NAME, current_phone);
@@ -110,9 +122,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         finish();
     }
 
-    private void handleResultIfFalse(){
+    private void handleResultIfFalse(String result_json){
         setResult(ActivityActionConfig.RESULT_CODE_REGISTER_FALSE);
         finish();
+    }
+
+    private void handleGetCodeResult(String result_json) {
+
     }
 
 }

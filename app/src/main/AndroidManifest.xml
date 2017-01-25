@@ -13,7 +13,6 @@
         <activity android:name=".NavigationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -35,7 +34,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ForgetPasswordActivity">
+        <activity
+            android:name=".activities.ForgetPasswordActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <intent-filter>
                 <action android:name="com.jordan.project.FORGET_PASSWORD_ACTION"/>
                 <category android:name="android.intent.category.DEFAULT"/>

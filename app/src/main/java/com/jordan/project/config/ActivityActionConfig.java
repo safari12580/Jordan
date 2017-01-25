@@ -22,6 +22,7 @@ public final class ActivityActionConfig {
     public static final int REQUEST_CODE_FORGET_PASSWORD = 30000;
     public static final int RESULT_CODE_FORGET_PASSWORD_SUCCESS = 30000;
     public static final int RESULT_CODE_FORGET_PASSWORD_FALSE = -30000;
+    public static final int RESULT_CODE_FORGET_PASSWORD_CANCEL = -30001;
 
 
     public static final String KEY_LOGIN_USER_NAME = "user_name";

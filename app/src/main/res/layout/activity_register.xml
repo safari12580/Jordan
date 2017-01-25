@@ -29,6 +29,7 @@
             android:hint="@string/common_phone_number"
             android:inputType="number"/>
         <Button
+            android:id="@+id/register_get_code_btn"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -44,14 +45,14 @@
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="match_parent"
-            android:text="@string/common_athor_code"
+            android:text="@string/common_auth_code"
             android:gravity="center|start"/>
         <EditText
             android:id="@+id/register_author_code_et"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:hint="@string/common_athor_code"
+            android:hint="@string/common_auth_code"
             android:inputType="number"/>
     </LinearLayout>
 

@@ -5,7 +5,7 @@
     <string name="common_forget_password">忘记密码</string>
     <string name="common_register">注册</string>
     <string name="common_phone_number">手机号码</string>
-    <string name="common_athor_code">验证码</string>
+    <string name="common_auth_code">验证码</string>
     <string name="common_get_author_code">获取验证码</string>
     <string name="common_nick">昵称</string>
     <string name="common_role">角色</string>
