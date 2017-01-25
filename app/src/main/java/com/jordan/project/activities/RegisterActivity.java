@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String current_nick = mETNick.getText().toString();
         String current_role = mETRole.getText().toString();
         String current_ic_info = mETICInfo.getText().toString();
-
+        //Do register
     }
 
     private void handleResultIfSuccess(){

@@ -116,10 +116,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 mCurrentPassword = result_intent.getStringExtra(ActivityActionConfig.KEY_LOGIN_USER_PASSWORD);
                 updateUI();
                 if (getResources().getBoolean(R.bool.config_auto_login_after_register)) {
+                    mETPhone.setText(mCurrentPhone);
+                    mETPassword.setText(mCurrentPassword);
                     doLogin();
                 }
                 break;
             case ActivityActionConfig.RESULT_CODE_REGISTER_FALSE:
+            case ActivityActionConfig.RESULT_CODE_REGISTER_CANCEL:
                 break;
             default:
                 throw new RuntimeException("nonsupport result code");
