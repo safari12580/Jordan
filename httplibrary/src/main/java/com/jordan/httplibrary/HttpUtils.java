@@ -1,12 +1,10 @@
 package com.jordan.httplibrary;
 
-import android.text.TextUtils;
 
 import com.jordan.httplibrary.utils.Base64;
 import com.jordan.httplibrary.utils.HttpUtilsConfig;
-import com.jordan.httplibrary.utils.data.ResponeData;
+import com.jordan.httplibrary.utils.data.ResponesData;
 import com.safari.core.protocol.RequestMessage;
-import com.safari.core.protocol.ResponseMessage;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -55,7 +53,7 @@ public final class HttpUtils {
         return null;
     }
 
-    public ResponeData isSuccess(String respone_data){
+    public ResponesData isSuccess(String respone_data){
         try {
             JSONObject respone_object = new JSONObject(respone_data);
             String result = respone_object.getString(HttpUtilsConfig.KEY_RESP_ROOT_RESULT);
@@ -63,7 +61,7 @@ public final class HttpUtils {
                 return null;
             } else {
                 JSONObject false_data_obj = new JSONObject(respone_object.getJSONObject(HttpUtilsConfig.KEY_RESP_ROOT_DATA).toString());
-                ResponeData data = new ResponeData(false_data_obj.getString(HttpUtilsConfig.KEY_RESP_CODE),
+                ResponesData data = new ResponesData(false_data_obj.getString(HttpUtilsConfig.KEY_RESP_CODE),
                         false_data_obj.getString(HttpUtilsConfig.KEY_RESP_MESSAGE));
                 return data;
             }
