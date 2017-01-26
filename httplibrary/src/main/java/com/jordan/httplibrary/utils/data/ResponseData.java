@@ -1,9 +1,9 @@
 package com.jordan.httplibrary.utils.data;
 
-public class ResponesData {
+public class ResponseData {
     private String mResultCode, mMessage;
 
-    public ResponesData(String ResultCode, String Message) {
+    public ResponseData(String ResultCode, String Message) {
         mResultCode = ResultCode;
         mMessage = Message;
     }
@@ -18,7 +18,7 @@ public class ResponesData {
 
     @Override
     public String toString() {
-        return "ResponesData{" +
+        return "ResponseData{" +
                 "mResultCode='" + mResultCode + '\'' +
                 ", mMessage='" + mMessage + '\'' +
                 '}';

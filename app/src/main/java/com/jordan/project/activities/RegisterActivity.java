@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.jordan.httplibrary.utils.RegexUtil;
+import com.jordan.httplibrary.utils.CommonUtils;
 import com.jordan.project.R;
 import com.jordan.project.config.ActivityActionConfig;
 
@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return false;
         }
 
-        if (!RegexUtil.isCellphone(current_phone)) {
+        if (!CommonUtils.isCellPhone(current_phone)) {
             Toast.makeText(this, R.string.info_wrong_phone, Toast.LENGTH_LONG).show();
             return false;
         }

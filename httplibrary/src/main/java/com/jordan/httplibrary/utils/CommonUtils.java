@@ -3,13 +3,13 @@ package com.jordan.httplibrary.utils;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
+import com.jordan.httplibrary.utils.data.ResponseData;
 import com.safari.core.protocol.RequestMessage;
 import com.safari.core.protocol.ResponseMessage;
 
@@ -47,13 +47,13 @@ public final class CommonUtils {
             biz_build.setToken(user_token);
             biz_build.setLang(getCurrentLan());
             sBiz = biz_build.build();
-        } else {//If current BIZ is not NULL, we must check if it's LAUNG field is changed
-            String current_launguage = sBiz.getLang();
-            String now_launguage = getCurrentLan();
+        } else {//If current BIZ is not NULL, we must check if it's language field is changed
+            String current_language = sBiz.getLang();
+            String now_language = getCurrentLan();
             RequestMessage.Biz.Builder biz_builder = RequestMessage.Biz.newBuilder(sBiz);
-            if (TextUtils.isEmpty(current_launguage)
-                    || !current_launguage.equals(now_launguage)) {
-                biz_builder.setLang(now_launguage);
+            if (TextUtils.isEmpty(current_language)
+                    || !current_language.equals(now_language)) {
+                biz_builder.setLang(now_language);
             }
             TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
             String device_id = tm.getDeviceId();
@@ -79,13 +79,13 @@ public final class CommonUtils {
             biz_build.setToken(user_token);
             biz_build.setLang(getCurrentLan());
             sBiz = biz_build.build();
-        } else {//If current BIZ is not NULL, we must check if it's LAUNG field is changed
-            String current_launguage = sBiz.getLang();
-            String now_launguage = getCurrentLan();
-            if (TextUtils.isEmpty(current_launguage)
-                    || !current_launguage.equals(now_launguage)) {
+        } else {//If current BIZ is not NULL, we must check if it's language field is changed
+            String current_language = sBiz.getLang();
+            String now_language = getCurrentLan();
+            if (TextUtils.isEmpty(current_language)
+                    || !current_language.equals(now_language)) {
                 RequestMessage.Biz.Builder biz_builder = RequestMessage.Biz.newBuilder(sBiz);
-                biz_builder.setLang(now_launguage);
+                biz_builder.setLang(now_language);
                 biz_builder.setToken(user_token);
                 sBiz = biz_builder.build();
             }
@@ -150,9 +150,9 @@ public final class CommonUtils {
 
     public static String getCurrentLan(){
         Locale current_locale = Locale.getDefault();
-        String launguage_code = current_locale.getLanguage();
+        String language_code = current_locale.getLanguage();
         StringBuffer buffer_launguage = new StringBuffer();
-        if (HttpUtilsConfig.LANGUAGE_CHINESE.equals(launguage_code)) {
+        if (HttpUtilsConfig.LANGUAGE_CHINESE.equals(language_code)) {
             buffer_launguage.append(HttpUtilsConfig.LANGUAGE_CHINESE);
             buffer_launguage.append("_");
             String country_code = current_locale.getCountry();
@@ -212,30 +212,27 @@ public final class CommonUtils {
 
     }
 
-    public static boolean isSuccess(String result_json){
-        if (TextUtils.isEmpty(result_json))
-            return false;
+    public ResponseData isSuccess(String response_data){
+        if (TextUtils.isEmpty(response_data))
+            throw new RuntimeException("isSuccess::info::Input param is null");
 
         try {
-            JSONObject result_data = new JSONObject(result_json);
-            String data_value_temp = result_data.getString(HttpUtilsConfig.KEY_RESP_ROOT_DATA);
-            byte[] data_bytes = Base64.decode(data_value_temp);
-            ResponseMessage.Response result_buffer = ResponseMessage.Response.parseFrom(data_bytes);
-            String result_value = result_buffer.getResult();
-            if (HttpUtilsConfig.RESULT_CODE_SUCCESS.equals(result_value))
-                return true;
-            else {
-                String data_value = result_buffer.getData();
-                String data_value_in_temp = DES3Util.decode(data_value);
-                JSONObject data_value_in = new JSONObject(data_value_in_temp);
-                String code = data_value_in.getString(HttpUtilsConfig.KEY_RESP_CODE);
-                String msg = data_value_in.getString(HttpUtilsConfig.KEY_RESP_MESSAGE);
+            JSONObject response_object = new JSONObject(response_data);
+            String result = response_object.getString(HttpUtilsConfig.KEY_RESP_ROOT_RESULT);
+            if (HttpUtilsConfig.RESULT_CODE_SUCCESS.equals(result)){
+                return null;
+            } else {
+                JSONObject false_data_obj = new JSONObject(response_object.getJSONObject(HttpUtilsConfig.KEY_RESP_ROOT_DATA).toString());
+                ResponseData data = new ResponseData(false_data_obj.getString(HttpUtilsConfig.KEY_RESP_CODE),
+                        false_data_obj.getString(HttpUtilsConfig.KEY_RESP_MESSAGE));
+                return data;
             }
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException(e.getCause());
         }
-        return false;
     }
+
 
     public static String getDataStrFromResult(String result_json_str) {
         try {

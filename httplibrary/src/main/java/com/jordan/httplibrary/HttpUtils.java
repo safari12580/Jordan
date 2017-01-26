@@ -3,7 +3,7 @@ package com.jordan.httplibrary;
 
 import com.jordan.httplibrary.utils.Base64;
 import com.jordan.httplibrary.utils.HttpUtilsConfig;
-import com.jordan.httplibrary.utils.data.ResponesData;
+import com.jordan.httplibrary.utils.data.ResponseData;
 import com.safari.core.protocol.RequestMessage;
 
 import org.apache.http.HttpEntity;
@@ -44,8 +44,8 @@ public final class HttpUtils {
             HttpResponse response = client.execute(post);
             if (response.getStatusLine().getStatusCode() == HttpUtilsConfig.HTTP_SUCCCESS){
                 HttpEntity result_entity = response.getEntity();
-                String respone_string = EntityUtils.toString(result_entity);
-                return respone_string;
+                String response_string = EntityUtils.toString(result_entity);
+                return response_string;
             }
         }catch (Exception e) {
             e.printStackTrace();
@@ -53,21 +53,4 @@ public final class HttpUtils {
         return null;
     }
 
-    public ResponesData isSuccess(String respone_data){
-        try {
-            JSONObject respone_object = new JSONObject(respone_data);
-            String result = respone_object.getString(HttpUtilsConfig.KEY_RESP_ROOT_RESULT);
-            if (HttpUtilsConfig.RESULT_CODE_SUCCESS.equals(result)){
-                return null;
-            } else {
-                JSONObject false_data_obj = new JSONObject(respone_object.getJSONObject(HttpUtilsConfig.KEY_RESP_ROOT_DATA).toString());
-                ResponesData data = new ResponesData(false_data_obj.getString(HttpUtilsConfig.KEY_RESP_CODE),
-                        false_data_obj.getString(HttpUtilsConfig.KEY_RESP_MESSAGE));
-                return data;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e.getCause());
-        }
-    }
 }
