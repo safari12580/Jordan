@@ -5,7 +5,7 @@ package com.jordan.commonlibrary.config;
  * Created by icean on 2017/1/27.
  */
 
-public final class CommonConfig {
+public final class CommonSystemConfig {
     public static final String COMMON_DEFAULT_ADDRESS = "http://47.90.55.236:8080";
 
     public static final String URI_UPLOAD_FILE_SINGLE = "/v0/sys/media/upload.htm";
@@ -42,21 +42,9 @@ public final class CommonConfig {
     public static final String RECEIVE_WAY_SMS = "1";//短信接收
     public static final String RECEIVE_WAY_EMAIL = "2";//邮件接收
 
-    /**
-     * 上传单个媒体文件的请求/响应（成功）消息字段配置
-     */
-    public static final class MediaMessageConfig {
-        public static final String JSON_REQUEST_KEY_TYPE = "type";
-        public static final String JSON_REQUEST_KEY_NAME = "name";
-        public static final String JSON_REQUEST_KEY_FILE_CONTENT = "file";
-
-        public static final String JSON_RESPONSE_KEY_ID = "id";
-        public static final String JSON_RESPONSE_KEY_NAME = "name";
-        public static final String JSON_RESPONSE_KEY_URL = "url";
-    }
 
     /**
-     * 上传多个媒体文件的请求/响应（成功）消息字段配置
+     * 上传单个或者多个媒体文件的请求/响应（成功）消息字段配置
      */
     public static final class MediasMessageConfig {
         public static final String JSON_MEDIA_ROOT = "medias";

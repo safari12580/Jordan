@@ -1,7 +1,12 @@
 package com.jordan.httplibrary;
 
 
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.text.TextUtils;
+
 import com.jordan.httplibrary.utils.Base64;
+import com.jordan.httplibrary.utils.CommonUtils;
 import com.jordan.httplibrary.utils.HttpUtilsConfig;
 import com.jordan.httplibrary.utils.data.ResponseData;
 import com.safari.core.protocol.RequestMessage;
@@ -17,6 +22,7 @@ import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +32,7 @@ import java.util.List;
 
 public final class HttpUtils {
 
-    public String sendHttpRequest(String target_address, RequestMessage.Request request_message){
+    public static String sendHttpRequest(String target_address, RequestMessage.Request request_message){
         try {
             JSONObject all_data = new JSONObject();
             String data_str = Base64.encode(request_message.toByteArray());
@@ -52,5 +58,4 @@ public final class HttpUtils {
         }
         return null;
     }
-
 }
