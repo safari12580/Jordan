@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/commonlibrary" />
             <option value="$PROJECT_DIR$/httplibrary" />
+            <option value="$PROJECT_DIR$/usersystemlibrary" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
