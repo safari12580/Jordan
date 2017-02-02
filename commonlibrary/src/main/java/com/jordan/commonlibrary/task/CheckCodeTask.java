@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
+import com.jordan.commonlibrary.config.CommonSystemConfig;
 import com.jordan.commonlibrary.utils.CommonSystemUtils;
 import com.jordan.httplibrary.BaseTask;
 import com.jordan.httplibrary.HttpUtils;
@@ -17,6 +18,7 @@ import com.safari.core.protocol.RequestMessage;
 
 public final class CheckCodeTask extends BaseTask {
     private String mAccount, mType, mCode;
+    private String mCheckCodeUrl;
 
     public CheckCodeTask(Context ctx, String remote_address, Handler main_handler,
                        String user_account, String file_type, String code, String user_token,
@@ -26,12 +28,13 @@ public final class CheckCodeTask extends BaseTask {
         mAccount = user_account;
         mType = file_type;
         mCode = code;
+        mCheckCodeUrl = mRemoteServerAddress + CommonSystemConfig.URI_CHECK_CODE;
     }
     @Override
     public String doTask() {
         String main_json_str = CommonSystemUtils.createCheckCodeMainRequest(mAccount, mType, mCode);
         RequestMessage.Request request_proto = CommonUtils.createRequest(mContext, main_json_str, mUserToken, mIsGranted);
-        String result_json = HttpUtils.sendHttpRequest(mRemoteServerAddress, request_proto);
+        String result_json = HttpUtils.sendHttpRequest(mCheckCodeUrl, request_proto);
         return result_json;
     }
 

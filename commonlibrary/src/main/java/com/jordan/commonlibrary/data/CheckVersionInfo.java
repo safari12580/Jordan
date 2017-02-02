@@ -1,7 +1,6 @@
 package com.jordan.commonlibrary.data;
 
 import com.jordan.commonlibrary.config.CommonSystemConfig;
-import com.jordan.httplibrary.utils.DES3Util;
 import com.jordan.httplibrary.utils.data.JsonInfo;
 
 import org.json.JSONObject;

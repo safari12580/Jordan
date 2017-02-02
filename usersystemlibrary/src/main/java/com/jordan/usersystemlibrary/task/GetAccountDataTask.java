@@ -1,46 +1,45 @@
-package com.jordan.commonlibrary.task;
+package com.jordan.usersystemlibrary.task;
 
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
-import com.jordan.commonlibrary.config.CommonSystemConfig;
-import com.jordan.commonlibrary.utils.CommonSystemUtils;
 import com.jordan.httplibrary.BaseTask;
 import com.jordan.httplibrary.HttpUtils;
 import com.jordan.httplibrary.config.InnerMessageConfig;
 import com.jordan.httplibrary.utils.CommonUtils;
+import com.jordan.usersystemlibrary.config.UserSystemConfig;
+import com.jordan.usersystemlibrary.utils.UserSystemUtils;
 import com.safari.core.protocol.RequestMessage;
 
 /**
- * Created by icean on 2017/2/1.
+ * Created by icean on 2017/2/2.
  */
 
-public final class ViewMediasTask extends BaseTask {
+public final class GetAccountDataTask extends BaseTask {
+    private String mAccount;
+    private String mUrl;
 
-    private String[] mMediasIDs;
-    private String mViewMediasUri;
-
-    public ViewMediasTask(Context ctx, String remote_address, Handler main_handler,
-                           String[] ids, String user_token,
+    public GetAccountDataTask(Context ctx, String remote_address, Handler main_handler,
+                           String user_account, String user_token,
                            boolean is_granted) {
         super(ctx, remote_address, user_token, main_handler, is_granted);
-        mMediasIDs = ids;
-        mViewMediasUri = mRemoteServerAddress + CommonSystemConfig.URI_LIST_FILE;
+        mAccount = user_account;
+        mUrl = mRemoteServerAddress + UserSystemConfig.URI_GET_ACCOUNT_INFO;
     }
 
     @Override
     public String doTask() {
-        String main_json_str = CommonSystemUtils.createViewMediasMainRequest(mMediasIDs);
+        String main_json_str = UserSystemUtils.createGetPersonalDataMainRequest(mAccount);
         RequestMessage.Request request_proto = CommonUtils.createRequest(mContext, main_json_str, mUserToken, mIsGranted);
-        String result_json = HttpUtils.sendHttpRequest(mViewMediasUri, request_proto);
+        String result_json = HttpUtils.sendHttpRequest(mUrl, request_proto);
         return result_json;
     }
 
     @Override
     public void onSuccess(String result_json) {
         if (null != mMainHandler) {
-            Message success_message = mMainHandler.obtainMessage(InnerMessageConfig.COMMON_VIEW_MEDIAS_MESSAGE_SUCCESS);
+            Message success_message = mMainHandler.obtainMessage(InnerMessageConfig.USER_GET_ACCOUNT_DATA_MESSAGE_SUCCESS);
             success_message.obj = result_json;
             success_message.sendToTarget();
         }
@@ -49,7 +48,7 @@ public final class ViewMediasTask extends BaseTask {
     @Override
     public void onFalse(String false_json) {
         if (null != mMainHandler) {
-            Message success_message = mMainHandler.obtainMessage(InnerMessageConfig.COMMON_VIEW_MEDIAS_MESSAGE_FALSE);
+            Message success_message = mMainHandler.obtainMessage(InnerMessageConfig.USER_GET_ACCOUNT_DATA_MESSAGE_FALSE);
             success_message.obj = false_json;
             success_message.sendToTarget();
         }
@@ -58,7 +57,7 @@ public final class ViewMediasTask extends BaseTask {
     @Override
     public void onException() {
         if (null != mMainHandler) {
-            Message success_message = mMainHandler.obtainMessage(InnerMessageConfig.COMMON_VIEW_MEDIAS_MESSAGE_EXCEPTION);
+            Message success_message = mMainHandler.obtainMessage(InnerMessageConfig.USER_GET_ACCOUNT_DATA_MESSAGE_EXCEPTION);
             success_message.sendToTarget();
         }
     }

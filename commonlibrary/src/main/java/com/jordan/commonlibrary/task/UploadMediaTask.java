@@ -20,6 +20,7 @@ import com.safari.core.protocol.RequestMessage;
 public final class UploadMediaTask extends BaseTask {
 
     private String mType, mFileFullPath;
+    private String mUploadMediaUri;
 
     public UploadMediaTask(Context ctx, String remote_address, Handler main_handler,
                            String file_type, String file_path, String user_token,
@@ -27,13 +28,14 @@ public final class UploadMediaTask extends BaseTask {
         super(ctx, remote_address, user_token, main_handler, is_granted);
         mType = file_type;
         mFileFullPath = file_path;
+        mUploadMediaUri = mRemoteServerAddress + CommonSystemConfig.URI_UPLOAD_FILE_SINGLE;
     }
 
     @Override
     public String doTask() {
         String main_json_str = CommonSystemUtils.createUploadMediaMainRequest(mType, mFileFullPath);
         RequestMessage.Request request_proto = CommonUtils.createRequest(mContext, main_json_str, mUserToken, mIsGranted);
-        String result_json = HttpUtils.sendHttpRequest(mRemoteServerAddress, request_proto);
+        String result_json = HttpUtils.sendHttpRequest(mUploadMediaUri, request_proto);
         return result_json;
     }
 

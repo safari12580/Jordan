@@ -6,7 +6,6 @@ import com.jordan.commonlibrary.data.CheckVersionInfo;
 import com.jordan.commonlibrary.data.SendCodeInfo;
 import com.jordan.commonlibrary.data.UploadMediaInfo;
 import com.jordan.commonlibrary.data.ViewMediasInfo;
-import com.jordan.httplibrary.utils.DES3Util;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,15 +19,9 @@ import java.util.ArrayList;
 public class CommonSystemUtils {
 
     public static String createUploadMediaMainRequest(String type, String file_full_path) {
-        try {
-            UploadMediaInfo current_file_obj = new UploadMediaInfo(type, file_full_path);
-            String upload_file_obj = current_file_obj.toJsonStr();
-            String result_json_str = DES3Util.encode(upload_file_obj.toString());
-            return result_json_str;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        UploadMediaInfo current_file_obj = new UploadMediaInfo(type, file_full_path);
+        String upload_file_obj = current_file_obj.toJsonStr();
+        return upload_file_obj;
     }
 
     public static String createUploadMediasMainRequest(ArrayList<UploadMediaInfo> upload_media_files) {
@@ -40,7 +33,7 @@ public class CommonSystemUtils {
                 }
                 JSONObject all_file_json_obj = new JSONObject();
                 all_file_json_obj.put(CommonSystemConfig.MediasMessageConfig.JSON_MEDIA_ROOT, file_json_array);
-                String all_file_json_str = DES3Util.decode(all_file_json_obj.toString());
+                String all_file_json_str = all_file_json_obj.toString();
                 return all_file_json_str;
             } catch (Exception e) {
                 e.printStackTrace();

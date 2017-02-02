@@ -6,7 +6,7 @@ package com.jordan.commonlibrary.config;
  */
 
 public final class CommonSystemConfig {
-    public static final String COMMON_DEFAULT_ADDRESS = "http://47.90.55.236:8080";
+    public static final String COMMON_DEFAULT_ADDRESS = "http://47.90.55.236:8080/safari_web/";
 
     public static final String URI_UPLOAD_FILE_SINGLE = "/v0/sys/media/upload.htm";
     public static final String URI_UPLOAD_FILE_SOME = "/v0/sys/media/uploads.htm";
@@ -15,7 +15,8 @@ public final class CommonSystemConfig {
     public static final String URI_SEND_CODE = "/v0/sys/sms/send.htm";
     public static final String URI_CHECK_CODE = "/v0/sys/sms/valid.htm";
 
-    public static final String DEFAULT_DEVICE_TYPE = "1";//安卓系统
+    public static final String ANDROID_DEVICE_TYPE = "1";//安卓系统
+    public static final String HARDWARE_DEVICE_TYPE = "9";//硬件
 
     /**
      * 媒体文件用途

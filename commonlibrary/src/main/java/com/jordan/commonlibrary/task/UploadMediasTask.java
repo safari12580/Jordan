@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
+import com.jordan.commonlibrary.config.CommonSystemConfig;
 import com.jordan.commonlibrary.data.UploadMediaInfo;
 import com.jordan.commonlibrary.utils.CommonSystemUtils;
 import com.jordan.httplibrary.BaseTask;
@@ -21,19 +22,21 @@ import java.util.ArrayList;
 public final class UploadMediasTask extends BaseTask {
 
     private ArrayList<UploadMediaInfo> mAllUploadFiles;
+    private String mUploadMediasUri;
 
     public UploadMediasTask(Context ctx, String remote_address, Handler main_handler,
                             ArrayList<UploadMediaInfo> upload_medias, String user_token,
                             boolean is_granted) {
         super(ctx, remote_address, user_token, main_handler, is_granted);
         mAllUploadFiles = upload_medias;
+        mUploadMediasUri = mRemoteServerAddress + CommonSystemConfig.URI_UPLOAD_FILE_SOME;
     }
 
     @Override
     public String doTask() {
         String main_json_str = CommonSystemUtils.createUploadMediasMainRequest(mAllUploadFiles);
         RequestMessage.Request request_proto = CommonUtils.createRequest(mContext, main_json_str, mUserToken, mIsGranted);
-        String result_json = HttpUtils.sendHttpRequest(mRemoteServerAddress, request_proto);
+        String result_json = HttpUtils.sendHttpRequest(mUploadMediasUri, request_proto);
         return result_json;
     }
 
