@@ -1,7 +1,9 @@
-package com.jordan.project;
+package com.jordan.project.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.jordan.project.R;
 
 public class NavigationActivity extends AppCompatActivity {
 

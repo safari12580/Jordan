@@ -1,7 +1,9 @@
 package com.jordan.usersystemlibrary;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
+import android.text.TextUtils;
 
 import com.jordan.usersystemlibrary.config.UserSystemConfig;
 import com.jordan.usersystemlibrary.task.CheckAccountTask;
@@ -148,5 +150,36 @@ public final class UserManager {
 
         mLogoutTask = new LogoutTask(mContext, mRemoteAddress, mMainThreadHandler, mUserToken, mIsGranted);
         mLogoutTask.execute("Begin");
+    }
+
+    public void saveUserData(String user_token, String user_json) {
+        mUserToken = user_token;
+        SharedPreferences.Editor editor = mContext.getSharedPreferences(UserSystemConfig.USER_SYSTEM_OFFLINE_FILE, Context.MODE_PRIVATE).edit();
+        editor.putString(UserSystemConfig.OfflineUserConfigFile.KEY_TOKEN, mUserToken);
+        editor.putString(UserSystemConfig.OfflineUserConfigFile.KEY_USER_JSON, user_json);
+        editor.putLong(UserSystemConfig.OfflineUserConfigFile.KEY_LOGIN_DATETIME, System.currentTimeMillis());
+        editor.commit();
+    }
+
+    public String getUserToken(){
+        if (TextUtils.isEmpty(mUserToken)) {
+            SharedPreferences sf = mContext.getSharedPreferences(UserSystemConfig.USER_SYSTEM_OFFLINE_FILE, Context.MODE_PRIVATE);
+            mUserToken = sf.getString(UserSystemConfig.OfflineUserConfigFile.KEY_TOKEN, "");
+            return mUserToken;
+        } else {
+            return mUserToken;
+        }
+    }
+
+    public String getUserJson(){
+        SharedPreferences sf = mContext.getSharedPreferences(UserSystemConfig.USER_SYSTEM_OFFLINE_FILE, Context.MODE_PRIVATE);
+        String user_json = sf.getString(UserSystemConfig.OfflineUserConfigFile.KEY_USER_JSON, "");
+        return user_json;
+    }
+
+    public long getUserLoginDatetime(){
+        SharedPreferences sf = mContext.getSharedPreferences(UserSystemConfig.USER_SYSTEM_OFFLINE_FILE, Context.MODE_PRIVATE);
+        long login_datetime = sf.getLong(UserSystemConfig.OfflineUserConfigFile.KEY_LOGIN_DATETIME, -1);
+        return login_datetime;
     }
 }

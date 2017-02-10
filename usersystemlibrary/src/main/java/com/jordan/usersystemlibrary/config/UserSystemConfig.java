@@ -8,6 +8,8 @@ public class UserSystemConfig {
 
     public static final String USER_SYSTEM_DEFAULT_ADDRESS = "http://47.90.55.236:8080/safari_web/";
 
+    public static final String USER_SYSTEM_OFFLINE_FILE = "user_data";
+
     public static final String URI_CHECK_ACCOUNT = "v0/user/vip/unique.htm";
     public static final String URI_REGISTER = "v0/user/vip/register.htm";
     public static final String URI_LOGIN = "v0/user/vip/login.htm";
@@ -141,5 +143,11 @@ public class UserSystemConfig {
 
     public static final class LogoutMessageConfig {
 
+    }
+
+    public static final class OfflineUserConfigFile {
+        public static final String KEY_TOKEN = "user_token";
+        public static final String KEY_USER_JSON = "user_json";
+        public static final String KEY_LOGIN_DATETIME = "login_datetime";
     }
 }
